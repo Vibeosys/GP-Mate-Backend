@@ -342,16 +342,28 @@ function buildSessionTable(){
 		        	   return new Date(data.patient.dateOfBirth).toString('MMMM d, yyyy');
 		           }
 		        },
+		        {
+			           "mData": null,
+			           "mRender": function(data, type, full) {
+			        	   return data.patient.email;
+			           }
+			        },
 				{
 		           "mData": null,
 		           "mRender": function(data, type, full) {
-		        	   if(!data.availableToBeTaken){
+		        	   if(!data.availableToBeTaken && data.doctor){
 		        		   return data.doctor.name +" "+data.doctor.lastname;
 		        	   }else{
 		        		   return "";
 		        	   }
 		           }
-			    }
+			    },
+			    {
+			           "mData": null,
+			           "mRender": function(data, type, full) {
+			        	   return new Date(data.patient.appointmentDate).toString('MMMM d, yyyy : HH:mm');
+			           }
+			        }
 			]
   });
 }
