@@ -71,6 +71,7 @@ function buildDataForClipboard(){
 }
 
 $("#table-panel #export").click(function(e){
+	$("#sessionToClipboard").prepend("<H2>Prior to consultation, the patient used the GP-Mate app to report the following:<H2><br/>");
 	$("#sessionToClipboard").show();
 	
 });
@@ -287,9 +288,9 @@ function buildSymptomsBox(symptomList,session){
 		doctor = $($("tr.selected td")[4]).text();
 	}else{
 		status = (session.open)? "OPEN" : "CLOSED";
-		timeOpen = new Date(session.startDate).toString('MMMM d, HH:mm');
+		timeOpen = new Date(session.startDate).toString('dd/MM/yyyy HH:mm');
 		patientName = session.patient.name +" "+session.patient.lastname;
-		dob = new Date(session.patient.dateOfBirth).toString('MMMM d, yyyy');
+		dob = new Date(session.patient.dateOfBirth).toString('dd/MM/yyyy');
 		doctor = (!session.availableToBeTaken)? session.doctor.name +" "+session.doctor.lastname : "";
 	}
 	$(".box-symptoms .title h4").text(status+" | "+timeOpen+" | "+patientName+" | "+dob+" | "+doctor);
@@ -435,7 +436,7 @@ function buildSessionTable(){
 		           "mData": null,
 		           "width": "15%",
 		           "mRender": function(data, type, full) {
-		        	   return new Date(data.startDate).toString('MMMM d, HH:mm');
+		        	   return new Date(data.startDate).toString('dd/MM/yyyy : HH:mm');
 		           }
 		        },
 				{
@@ -448,7 +449,7 @@ function buildSessionTable(){
 		           "mData": null,
 		           "width": "15%",
 		           "mRender": function(data, type, full) {
-		        	   return new Date(data.patient.dateOfBirth).toString('MMMM d, yyyy');
+		        	   return new Date(data.patient.dateOfBirth).toString('dd/MM/yyyy');
 		           }
 		        },
 		        {
@@ -470,7 +471,7 @@ function buildSessionTable(){
 			    {
 			           "mData": null,
 			           "mRender": function(data, type, full) {
-			        	   return new Date(data.patient.appointmentDate).toString('MMMM d, yyyy : HH:mm');
+			        	   return new Date(data.patient.appointmentDate).toString('dd/MM/yyyy : HH:mm');
 			           }
 			        }
 			]
