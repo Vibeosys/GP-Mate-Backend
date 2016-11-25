@@ -122,7 +122,28 @@ textarea {
 .box-symptoms .title h4{
 	margin-bottom: 0;
 }
+@media screen and (min-width:1250px){
+	  .box-symptoms .box{
+            height: 195px!important;
+}
+}
 
+@media screen and (min-width:992px) and (max-width:1249px){
+      .box-symptoms .box{
+            height: 235px!important;
+}
+}
+.box-symptoms .box{
+       
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: white;
+     padding: 10px;
+}
+
+.box-symptoms .box .inner-box{
+   padding: 10px;
+}
 .box-symptoms .box{
 	background-color: white;
     padding: 10px;

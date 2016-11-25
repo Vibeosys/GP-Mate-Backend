@@ -60,6 +60,8 @@ function buildDataForClipboard(){
 	var dob = $($("td",tr)[3]).text();
 	var dateSession = $($("td",tr)[1]).text();
 	
+    
+    
 	$("#sessionToClipboard").append("<div id='sessionRow'><H2>Prior to consultation, the patient used the GP-Mate app to report the following: <H2></div><br>");
 	$("#sessionToClipboard").append("<div id='sessionRow'>"+patientName+", [DOB] "+dob+" , [Session Date] "+dateSession+"</div><br>");
 	
@@ -236,7 +238,7 @@ $("#table-panel #deallocate").click(function(e){
 				//refresh table
 				var table = $('#table_id').DataTable();
 				table.ajax.reload( null, false );
-				swal("Session de-allocated!", "The session has been de-allocated by you", "success");
+				swal("Patient de-allocated!", "This patient is no longer allocated to you", "success");
 			},
 			error: function ( jqXHR, textStatus, errorThrown){
 				//refresh table
@@ -246,7 +248,7 @@ $("#table-panel #deallocate").click(function(e){
 				if(jqXHR.status == 409 || jqXHR.status == 401){
 					swal("Error!", jqXHR.responseText, "error");
 				}else{
-					swal("Error!", "The session can not be de-allocated. Try again later please.", "error");
+					swal("Error!", "The patient allocation can not be undone. Try again later please.", "error");
 				}
 			}
 		});
@@ -306,7 +308,7 @@ function buildSymptomsBox(symptomList,session){
 		var description = symptomList[i].description;
 		var answer1 = symptomList[i].answer1;
 		var answer2 = symptomList[i].answer2;
-		$(".box-symptoms .content").append('<div class="box added col-md-12">'+
+		$(".box-symptoms .content").append('<div class="inner-box col-md-6"><div class="box added">'+
 	    					'<div class="box-title col-md-12">'+
 	    						'<h4>Box 1</h4>'+
 	    					'</div>'+
@@ -320,7 +322,7 @@ function buildSymptomsBox(symptomList,session){
 	    					'<div class="col-md-6 col">'+
 	    						'<label for="answer2">Does it affect your daily activities?</label>'+
 	    						'<input name="answer2" class="form-control answer2" readonly>'+
-	    					'</div>'+
+	    					'</div></div>'+
 	    				'</div>');
 		$(".box-symptoms .content .added").attr("id",id);
 		$(".box-symptoms .content .added .box-title h4").text("Box "+(i+1));
