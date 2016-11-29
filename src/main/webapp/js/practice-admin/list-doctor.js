@@ -21,6 +21,12 @@ function buildDoctorTable(){
 			           "sClass": "text-center",
 			           "width": "10%",
 			           "mRender": function(data, type, full) {
+						   if($(document).height() > window.innerHeight) {
+								$('.navbar-fixed-top').removeClass('scroll-show').addClass('scroll-hide');
+							} 
+						   else{
+							   $('.navbar-fixed-top').removeClass('scroll-hide').addClass('scroll-show');
+  						    }
 			        	   if(data.status == 'ON_HOLD' || data.status == 'DENIED'){
 			        		   return '<a class="btn btn-primary btn-sm btn-authorize" data-association-id=' + data.id + '>' + 'Authorize' + '</a>';
 			        	   }else{

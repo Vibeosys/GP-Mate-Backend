@@ -23,6 +23,13 @@ function buildPracticeTable(){
 		           "sClass": "text-center",
 		           "width": "10%",
 		           "mRender": function(data, type, full) {
+					   if($(document).height() > window.innerHeight) {
+                        $('.navbar-fixed-top').removeClass('scroll-show').addClass('scroll-hide');
+                       } 
+                       else{
+                           
+                           $('.navbar-fixed-top').removeClass('scroll-hide').addClass('scroll-show');
+                       } 
 		        	   if(data.status == 'NO_REQUEST'){
 		        		   return '<a class="btn btn-primary btn-sm btn-request" data-practice-id=' + data.practicePlace.id + '>' + 'Request association' + '</a>';
 		        	   }else if(data.status == 'ON_HOLD'){

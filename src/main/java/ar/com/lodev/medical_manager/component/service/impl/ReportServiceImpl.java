@@ -34,8 +34,8 @@ public class ReportServiceImpl implements ReportService {
 //	private static final String REPORT_TEMPLATE_PATH_BRIEF_OUTLINE_CONSULT = "reports/brief_outline_consultation.jrxml";//testing
 	private static final String REPORT_TEMPLATE_PATH_BRIEF_OUTLINE_CONSULT = "jasper/brief_outline_consultation.jasper";
 	private static final String REPORT_BRIEF_OUTLINE_CONSULT_RELATIVE_NAME = "brief_outline_consultation.pdf";
-	private static final String REPORT_SUBJECT = "ConsultPal - Report";
-	private static final String REPORT_DEFAULT_BODY = "Thank you for using ConsultPal";
+	private static final String REPORT_SUBJECT = "GP-Mate - Report";
+	private static final String REPORT_DEFAULT_BODY = "Thank you for using GP-Mate";
 	
 	@Value("${app.file-system.temporal.root}")
 	private String REPORT_EXPORT_PATH;

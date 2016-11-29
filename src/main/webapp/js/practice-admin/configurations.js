@@ -41,7 +41,7 @@ function updateConfiguration(key,value){
 			method: "POST",
 			data: data,
 			success: function( data, textStatus, jqXHR) {
-				swal("Configuration Updated!","Configuration Update Successfuly.", "success");
+				swal("Configurations updated!","Configurations updated successfully.", "success");
 			},
 			error: function ( jqXHR, textStatus, errorThrown){
 				swal("Error!",jqXHR.responseText, "error");
