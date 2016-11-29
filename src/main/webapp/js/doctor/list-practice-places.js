@@ -23,7 +23,7 @@ function buildPracticeTable(){
 		           "sClass": "text-center",
 		           "width": "10%",
 		           "mRender": function(data, type, full) {
-					   if($(document).height() > window.innerHeight) {
+					   if($(document).height() >= window.innerHeight) {
                         $('.navbar-fixed-top').removeClass('scroll-show').addClass('scroll-hide');
                        } 
                        else{

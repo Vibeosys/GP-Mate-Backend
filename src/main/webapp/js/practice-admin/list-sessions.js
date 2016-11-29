@@ -317,11 +317,10 @@ function buildSessionTable(){
 				    "sClass": "text-center",
 				    "width": "7%",
 				    "mRender": function(data, type, full) {
-					   if($(document).height() > window.innerHeight) {
-                        $('.navbar-fixed-top').removeClass('scroll-show').addClass('scroll-hide');
+					   if($(document).height() >= window.innerHeight) {
+                           $('.navbar-fixed-top').removeClass('scroll-show').addClass('scroll-hide');
                        } 
-                       else{
-                           
+                       else{                           
                            $('.navbar-fixed-top').removeClass('scroll-hide').addClass('scroll-show');
                        }
 				 	   if(data.open){

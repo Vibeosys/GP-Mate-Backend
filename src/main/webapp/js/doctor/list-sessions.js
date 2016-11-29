@@ -54,14 +54,13 @@ function initializeClipboard(){
 function buildDataForClipboard(){
 	$("#sessionToClipboard #sessionRow").remove();
 	$("#sessionToClipboard .symptomsRow").remove();
+	$('#sessionToClipboard #filesSelected').remove();
+	$('#filesSelected').html("");
 	
 	var tr = $('#table_id tbody .selected');
 	var patientName = $($("td",tr)[2]).text();
 	var dob = $($("td",tr)[3]).text();
 	var dateSession = $($("td",tr)[1]).text();
-	
-    
-    
 	$("#sessionToClipboard").append("<div id='sessionRow'><H2>Prior to consultation, the patient used the GP-Mate app to report the following: <H2></div><br>");
 	$("#sessionToClipboard").append("<div id='sessionRow'>"+patientName+", [DOB] "+dob+" , [Session Date] "+dateSession+"</div><br>");
 	
@@ -75,6 +74,18 @@ function buildDataForClipboard(){
 
 $("#table-panel #export").click(function(e){
 	$('#sessionToClipboard br').remove();
+	$('#sessionToClipboard #filesSelected').remove();
+	var selectedFile = "";
+	var existingRowId = $('#selectedRowId').html();
+	var selectedIdForClipboardCopy = getSessionIdForReport();
+	
+	if(existingRowId == selectedIdForClipboardCopy){
+		selectedFile = $('#selectedFiles').html();
+		if(selectedFile && selectedFile.trim().length > 0 ){
+			$("#sessionToClipboard").append("<br/><p id='filesSelected'> Files Attached:"+selectedFile+"</p>");	
+		}
+	}
+	
 	$("#sessionToClipboard").show();
 	
 });
@@ -106,6 +117,16 @@ function managePanelButton(row){
 		$("#table-panel #sendMessage").prop("disabled",true);
 	}
 		
+}
+
+function getSessionIdForReport(){
+	var table = $('#table_id').DataTable();
+	var rowNewSelected = table
+    .row( $('#table_id tbody .selected') )
+    .node();
+	
+	var sessionIdForReport = $(rowNewSelected).attr("id");
+	return sessionIdForReport;
 }
 
 
@@ -407,7 +428,7 @@ function buildSessionTable(){
           searchPlaceholder: "Patient's name"
       },
       "oSearch": {"sSearch": patienNameToSearch},
-      "createdRow" : function( row, data, index ) {
+      "createdRow" : function( row, data, index ) {		  
     	  row.id = data.id;
     	  if(data.ownSession){
     		  $(row).addClass('ownSession');
@@ -428,6 +449,12 @@ function buildSessionTable(){
 				    "sClass": "text-center",
 				    "width": "7%",
 				    "mRender": function(data, type, full) {
+					   if(jQuery(document).height() >= window.innerHeight) {
+							jQuery('.navbar-fixed-top').removeClass('scroll-show').addClass('scroll-hide');
+                       } 
+                       else{                           
+                           jQuery('.navbar-fixed-top').removeClass('scroll-hide').addClass('scroll-show');
+                       }
 				 	   if(data.open){
 				 		   return '<span class="status open">OPEN</span>';
 				 	   }else{
